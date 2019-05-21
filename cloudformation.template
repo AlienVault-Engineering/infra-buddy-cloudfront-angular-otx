@@ -1,0 +1,305 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "ClusterStack": {
+      "Description": "ECS Cluster stack name to deploy service into",
+      "Type": "String"
+    },
+    "Environment": {
+      "Description": "The environment parameter for the docker container",
+      "Type": "String"
+    },
+    "Application": {
+      "Description": "The application",
+      "Type": "String"
+    },
+    "Role": {
+      "Description": "The application",
+      "Type": "String"
+    },
+    "VPCStack": {
+      "Description": "The stack name of the vpc deployed by infra-buddy that will be the target of this cluster.",
+      "Type": "String"
+    },
+    "ApiPath": {
+      "Description": "The application load balancer path to route api calls.",
+      "Type": "String"
+    },
+    "CertficateArn": {
+      "Description": "The certificate ARN of a cert in the us-east-1 region (Cloudfront limitation).",
+      "Type": "String"
+    },
+    "CloudfrontHostname": {
+      "Description": "Hostname to serve cloudfront content from",
+      "Type": "String"
+    }
+  },
+  "Conditions": {
+    "Production": {
+      "Fn::Equals": [
+        {
+          "Ref": "Environment"
+        },
+        "prod"
+      ]
+    },
+    "NoCloudfrontHostname": {
+      "Fn::Equals": [
+        {
+          "Ref":
+          "CloudfrontHostname"
+        },
+        ""
+      ]
+    }
+  },
+  "Resources": {
+    "S3BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "S3Bucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "S3Bucket"
+                    },
+                    "/*"
+                  ]
+                ]
+              },
+              "Principal": "*"
+            }
+          ]
+        }
+      }
+    },
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "BucketName": {
+          "Fn::Sub": "${Environment}-${Application}-${Role}-files"
+        },
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html"
+        },
+        "Tags": [
+          {
+            "Key": "Environment",
+            "Value": {
+              "Ref": "Environment"
+            }
+          },
+          {
+            "Key": "Application",
+            "Value": {
+              "Ref": "Application"
+            }
+          },
+          {
+            "Key": "Role",
+            "Value": {
+              "Ref": "Role"
+            }
+          }
+        ]
+      }
+    },
+    "Cloudfront": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            {
+              "Fn::If": [
+                "NoCloudfrontHostame",
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::Sub": "${Environment}-www."
+                      },
+                      {
+                        "Fn::ImportValue": {
+                          "Fn::Sub": "${VPCStack}-ExternalDomain"
+                        }
+                      }
+                    ]
+                  ]
+                },
+                {"Ref": "CloudfrontHostname"}
+              ]
+            }
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Ref": "CertficateArn"
+            },
+            "SslSupportMethod": "sni-only",
+            "MinimumProtocolVersion": "TLSv1"
+          },
+          "Origins": [
+            {
+              "Id": "bucket",
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "S3Bucket",
+                  "DomainName"
+                ]
+              },
+              "S3OriginConfig": {}
+            },
+            {
+              "Id": "api",
+              "DomainName": {
+                "Fn::ImportValue": {
+                  "Fn::Sub": "${ClusterStack}-ElasticLoadBalancerDNS"
+                }
+              },
+              "CustomOriginConfig": {
+                "HTTPPort": "80",
+                "HTTPSPort": "443",
+                "OriginProtocolPolicy": "http-only"
+              }
+            }
+          ],
+          "Enabled": "true",
+          "DefaultRootObject": "index.html",
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "DELETE",
+              "GET",
+              "HEAD",
+              "OPTIONS",
+              "PATCH",
+              "POST",
+              "PUT"
+            ],
+            "TargetOriginId": "bucket",
+            "MinTTL": 600,
+            "DefaultTTL": 600,
+            "MaxTTL": 600,
+            "ForwardedValues": {
+              "QueryString": "true"
+            },
+            "Compress": true,
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "CustomErrorResponses": [
+            {
+              "ErrorCode": "404",
+              "ResponsePagePath": "/index.html",
+              "ResponseCode": "200",
+              "ErrorCachingMinTTL": "30"
+            }
+          ],
+          "CacheBehaviors": [
+            {
+              "TargetOriginId": "bucket",
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "none"
+                }
+              },
+              "MinTTL": 600,
+              "DefaultTTL": 600,
+              "MaxTTL": 600,
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "index.html"
+            },
+            {
+              "TargetOriginId": "api",
+              "AllowedMethods": [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT"
+              ],
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "all"
+                },
+                "Headers": [
+                  "*"
+                ]
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": {
+                "Fn::Sub": "${ApiPath}/*"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "primarydns": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneName": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Fn::ImportValue": {
+                  "Fn::Sub": "${VPCStack}-ExternalDomain"
+                }
+              },
+              "."
+            ]
+          ]
+        },
+        "Name": {"Ref": "CloudfrontHostname"},
+        "Type": "CNAME",
+        "TTL": "900",
+        "ResourceRecords": [
+          {
+            "Fn::GetAtt": [
+              "Cloudfront",
+              "DomainName"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "DomainName": {
+      "Description": "The Domain name of the Cloudfront",
+      "Value": {
+        "Fn::GetAtt": [
+          "Cloudfront",
+          "DomainName"
+        ]
+      }
+    },
+    "S3BucketName": {
+      "Description": "The name of the bucket used to serve the angular app.",
+      "Value": {
+        "Ref": "S3Bucket"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WWW-Files"
+        }
+      }
+    }
+  }
+}

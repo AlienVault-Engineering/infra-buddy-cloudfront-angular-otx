@@ -1,0 +1,16 @@
+{
+  "API_PATH": {
+    "type": "property",
+    "key": "API_PATH",
+    "default": "api"
+  },
+  "CERTIFICATE_ARN": {
+    "type": "property",
+    "key": "CERTIFICATE_ARN"
+  },
+  "CLOUDFRONT_HOSTNAME": {
+    "type": "property",
+    "key": "CLOUDFRONT_HOSTNAME",
+    "default": ""
+  }
+}

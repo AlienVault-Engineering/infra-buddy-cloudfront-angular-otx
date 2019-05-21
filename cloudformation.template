@@ -124,7 +124,7 @@
           "Aliases": [
             {
               "Fn::If": [
-                "NoCloudfrontHostame",
+                "NoCloudfrontHostname",
                 {
                   "Fn::Join": [
                     "",

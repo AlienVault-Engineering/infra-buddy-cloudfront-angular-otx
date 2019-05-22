@@ -10,7 +10,11 @@
   },
   "CLOUDFRONT_HOSTNAME": {
     "type": "property",
-    "key": "CLOUDFRONT_HOSTNAME",
+    "key": "CLOUDFRONT_HOSTNAME"
+  },
+  "CLOUDFRONT_HOSTNAME2": {
+    "type": "property",
+    "key": "CLOUDFRONT_HOSTNAME2",
     "default": ""
   },
   "BACKEND_HOSTNAME": {

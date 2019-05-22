@@ -33,6 +33,10 @@
       "Description": "Hostname to serve cloudfront content from",
       "Type": "String"
     },
+    "CloudfrontHostname2": {
+      "Description": "Hostname to serve cloudfront content from",
+      "Type": "String"
+    },
     "BackendHostname": {
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
@@ -48,11 +52,11 @@
         "prod"
       ]
     },
-    "NoCloudfrontHostname": {
+    "NoCloudfrontHostname2": {
       "Fn::Equals": [
         {
           "Ref":
-          "CloudfrontHostname"
+          "CloudfrontHostname2"
         },
         ""
       ]
@@ -137,25 +141,16 @@
       "Properties": {
         "DistributionConfig": {
           "Aliases": [
+            {"Ref": "CloudfrontHostname"},
             {
               "Fn::If": [
                 "NoCloudfrontHostname",
                 {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::Sub": "${Environment}-www."
-                      },
-                      {
-                        "Fn::ImportValue": {
-                          "Fn::Sub": "${VPCStack}-ExternalDomain"
-                        }
-                      }
-                    ]
-                  ]
+                  "Ref": "AWS::NoValue"
                 },
-                {"Ref": "CloudfrontHostname"}
+                {
+                  "Ref": "CloudfrontHostname"
+                }
               ]
             }
           ],

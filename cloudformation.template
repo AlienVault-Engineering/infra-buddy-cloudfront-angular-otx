@@ -180,9 +180,7 @@
             {
               "Id": "otx-backend",
               "DomainName": {
-                "Fn::ImportValue": {
-                  "Ref": "BackendHostname"
-                }
+                "Ref": "BackendHostname"
               },
               "CustomOriginConfig": {
                 "HTTPPort": "80",

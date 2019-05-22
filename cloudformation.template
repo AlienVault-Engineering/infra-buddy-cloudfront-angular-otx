@@ -219,6 +219,7 @@
             {
               "TargetOriginId": "bucket",
               "MinTTL": 600,
+              "DefaultTTL": 600,
               "MaxTTL": 600,
               "ForwardedValues": {
                 "QueryString": "true",
@@ -232,6 +233,7 @@
             {
               "TargetOriginId": "api",
               "MinTTL": 0,
+              "DefaultTTL": 0,
               "MaxTTL": 0,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
@@ -251,6 +253,7 @@
             {
               "TargetOriginId": "api",
               "MinTTL": 0,
+              "DefaultTTL": 0,
               "MaxTTL": 0,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
@@ -270,6 +273,7 @@
             {
               "TargetOriginId": "api",
               "MinTTL": 0,
+              "DefaultTTL": 0,
               "MaxTTL": 0,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"

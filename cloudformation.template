@@ -185,7 +185,8 @@
               "CustomOriginConfig": {
                 "HTTPPort": "80",
                 "HTTPSPort": "443",
-                "OriginProtocolPolicy": "https-only"
+                "OriginProtocolPolicy": "https-only",
+                "OriginReadTimeout" : 60
               }
             }
           ],
@@ -215,7 +216,7 @@
             {
               "ErrorCode": "404",
               "ResponsePagePath": "/index.html",
-              "ResponseCode": "200",
+              "ResponseCode": "404",
               "ErrorCachingMinTTL": "30"
             }
           ],
@@ -245,11 +246,11 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/otxapi/*"
+              "PathPattern": "/*api/*"
             },
             {
               "TargetOriginId": "api",
@@ -262,11 +263,11 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/auth/*"
+              "PathPattern": "/*auth/*"
             },
             {
               "TargetOriginId": "api",
@@ -279,11 +280,11 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/api/*"
+              "PathPattern": "/taxii*/*"
             }
           ]
         }

@@ -245,11 +245,45 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "*"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Cookie", "Origin", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
               "PathPattern": "/otxapi/*"
+            },
+            {
+              "TargetOriginId": "api",
+              "AllowedMethods": [
+                "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
+              ],
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "all"
+                },
+                "Headers": [
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Cookie", "Origin", "Referrer", "User-Agent"
+                ]
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/auth/*"
+            },
+            {
+              "TargetOriginId": "api",
+              "AllowedMethods": [
+                "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
+              ],
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "all"
+                },
+                "Headers": [
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Cookie", "Origin", "Referrer", "User-Agent"
+                ]
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/api/*"
             }
           ]
         }

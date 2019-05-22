@@ -99,7 +99,7 @@
           "CorsRules": [
             {
               "AllowedHeaders": ["*"],
-              "AllowedMethods": ["GET"],
+              "AllowedMethods": ["HEAD", "GET"],
               "AllowedOrigins": ["*"],
               "MaxAge": "84600"
             }

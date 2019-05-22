@@ -240,6 +240,8 @@
                 "Cookies": {
                   "Forward": "all"
                 },
+                "MinTTL": 0,
+                "MaxTTL": 0,
                 "Headers": [
                   "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]
@@ -257,6 +259,8 @@
                 "Cookies": {
                   "Forward": "all"
                 },
+                "MinTTL": 0,
+                "MaxTTL": 0,
                 "Headers": [
                   "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]
@@ -274,6 +278,8 @@
                 "Cookies": {
                   "Forward": "all"
                 },
+                "MinTTL": 0,
+                "MaxTTL": 0,
                 "Headers": [
                   "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]

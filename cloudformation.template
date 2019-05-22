@@ -95,6 +95,14 @@
         "WebsiteConfiguration": {
           "IndexDocument": "index.html"
         },
+        "CorsRules": [
+          {
+            "AllowedHeaders": ["*"],
+            "AllowedMethods": ["GET"],
+            "AllowedOrigins": ["*"],
+            "MaxAge": "84600"
+          }
+        ],
         "Tags": [
           {
             "Key": "Environment",

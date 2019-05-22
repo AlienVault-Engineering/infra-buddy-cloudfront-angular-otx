@@ -245,7 +245,7 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Cookie", "Origin", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
@@ -262,7 +262,7 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Cookie", "Origin", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
@@ -279,7 +279,7 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Cookie", "Origin", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Referrer", "User-Agent"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",

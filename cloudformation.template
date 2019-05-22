@@ -178,7 +178,7 @@
               "S3OriginConfig": {}
             },
             {
-              "Id": "otx-backend",
+              "Id": "api",
               "DomainName": {
                 "Ref": "BackendHostname"
               },

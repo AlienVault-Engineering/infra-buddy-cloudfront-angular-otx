@@ -269,6 +269,8 @@
             },
             {
               "TargetOriginId": "api",
+              "MinTTL": 0,
+              "MaxTTL": 0,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -277,8 +279,6 @@
                 "Cookies": {
                   "Forward": "all"
                 },
-                "MinTTL": 0,
-                "MaxTTL": 0,
                 "Headers": [
                   "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
                 ]

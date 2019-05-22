@@ -144,7 +144,7 @@
             {"Ref": "CloudfrontHostname"},
             {
               "Fn::If": [
-                "NoCloudfrontHostname",
+                "NoCloudfrontHostname2",
                 {
                   "Ref": "AWS::NoValue"
                 },

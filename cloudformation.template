@@ -32,7 +32,12 @@
     "CloudfrontHostname": {
       "Description": "Hostname to serve cloudfront content from",
       "Type": "String"
+    },
+    "BackendHostname": {
+      "Description": "Hostname that hosts the backend API for cloudfront",
+      "Type": "String"
     }
+
   },
   "Conditions": {
     "Production": {
@@ -103,7 +108,7 @@
               "AllowedOrigins": ["*"],
               "MaxAge": "84600"
             }
-          ],
+          ]
         },
         "Tags": [
           {
@@ -173,16 +178,16 @@
               "S3OriginConfig": {}
             },
             {
-              "Id": "api",
+              "Id": "otx-backend",
               "DomainName": {
                 "Fn::ImportValue": {
-                  "Fn::Sub": "${ClusterStack}-ElasticLoadBalancerDNS"
+                  "Ref": "BackendHostname"
                 }
               },
               "CustomOriginConfig": {
                 "HTTPPort": "80",
                 "HTTPSPort": "443",
-                "OriginProtocolPolicy": "http-only"
+                "OriginProtocolPolicy": "https-only"
               }
             }
           ],
@@ -234,13 +239,7 @@
             {
               "TargetOriginId": "api",
               "AllowedMethods": [
-                "DELETE",
-                "GET",
-                "HEAD",
-                "OPTIONS",
-                "PATCH",
-                "POST",
-                "PUT"
+                "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
               "ForwardedValues": {
                 "QueryString": "true",
@@ -252,9 +251,7 @@
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": {
-                "Fn::Sub": "${ApiPath}/*"
-              }
+              "PathPattern": "/otxapi/*"
             }
           ]
         }

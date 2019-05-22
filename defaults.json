@@ -12,5 +12,9 @@
     "type": "property",
     "key": "CLOUDFRONT_HOSTNAME",
     "default": ""
+  },
+  "BACKEND_HOSTNAME": {
+    "type": "property",
+    "key": "BACKEND_HOSTNAME"
   }
 }

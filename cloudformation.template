@@ -311,16 +311,12 @@
           ]
         },
         "Name": {"Ref": "CloudfrontHostname"},
-        "Type": "CNAME",
+        "Type": "A",
         "TTL": "900",
-        "ResourceRecords": [
-          {
-            "Fn::GetAtt": [
-              "Cloudfront",
-              "DomainName"
-            ]
-          }
-        ]
+        "AliasTarget": {
+          "HostedZoneId": {"Fn::GetAtt": ["Cloudfront", "HostedZoneId"]},
+          "DNSName": {"Fn::GetAtt": ["Cloudfront", "DNSName"]}
+        }
       }
     }
   },

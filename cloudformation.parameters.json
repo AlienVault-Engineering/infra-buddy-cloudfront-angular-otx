@@ -33,7 +33,7 @@
   },
   {
     "ParameterKey": "CloudfrontHostname2",
-    "ParameterValue": "${CLOUDFRONT_HOSTNAME}"
+    "ParameterValue": "${CLOUDFRONT_HOSTNAME2}"
   },
   {
     "ParameterKey": "BackendHostname",

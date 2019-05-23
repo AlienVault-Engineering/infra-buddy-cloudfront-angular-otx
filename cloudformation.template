@@ -149,7 +149,7 @@
                   "Ref": "AWS::NoValue"
                 },
                 {
-                  "Ref": "CloudfrontHostname"
+                  "Ref": "CloudfrontHostname2"
                 }
               ]
             }

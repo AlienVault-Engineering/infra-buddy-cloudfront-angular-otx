@@ -313,7 +313,7 @@
         "Name": {"Ref": "CloudfrontHostname"},
         "Type": "A",
         "AliasTarget": {
-          "HostedZoneId": {"Ref": "Cloudfront"},
+          "HostedZoneId": "Z2FDTNDATAQYW2",
           "DNSName": {"Fn::GetAtt": ["Cloudfront", "DomainName"]}
         }
       }

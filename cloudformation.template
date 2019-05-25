@@ -244,7 +244,7 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent", "Content-Type"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
@@ -264,7 +264,7 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent", "Content-Type"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
@@ -284,7 +284,7 @@
                   "Forward": "all"
                 },
                 "Headers": [
-                  "X-OTX-API-KEY", "OTX-AUTHORIZATION-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent"
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent", "Content-Type"
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",

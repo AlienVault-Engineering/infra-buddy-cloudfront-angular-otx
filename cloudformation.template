@@ -211,7 +211,7 @@
             {
               "ErrorCode": "404",
               "ResponsePagePath": "/index.html",
-              "ResponseCode": "404",
+              "ResponseCode": "200",
               "ErrorCachingMinTTL": "30"
             }
           ],

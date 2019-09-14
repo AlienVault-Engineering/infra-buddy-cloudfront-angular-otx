@@ -234,7 +234,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -254,7 +254,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -274,7 +274,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -294,7 +294,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -314,7 +314,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -334,7 +334,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -354,7 +354,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],
@@ -374,7 +374,7 @@
               "TargetOriginId": "api",
               "MinTTL": 0,
               "DefaultTTL": 0,
-              "MaxTTL": 0,
+              "MaxTTL": 3600,
               "AllowedMethods": [
                 "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
               ],

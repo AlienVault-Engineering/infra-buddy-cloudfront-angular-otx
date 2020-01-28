@@ -175,7 +175,7 @@
             {
               "Id": "graph-bucket",
               "DomainName": {
-                "${Environment}-otxp-web-graph-ui-files",
+                "Fn::Sub": "${Environment}-otxp-web-graph-ui-files",
               },
               "S3OriginConfig": {}
             },

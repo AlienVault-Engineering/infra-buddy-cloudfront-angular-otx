@@ -173,6 +173,13 @@
               "S3OriginConfig": {}
             },
             {
+              "Id": "graph-bucket",
+              "DomainName": {
+                "${Environment}-otxp-web-graph-ui-files",
+              },
+              "S3OriginConfig": {}
+            },
+            {
               "Id": "api",
               "DomainName": {
                 "Ref": "BackendHostname"
@@ -229,6 +236,20 @@
               },
               "ViewerProtocolPolicy": "redirect-to-https",
               "PathPattern": "index.html"
+            },
+            {
+              "TargetOriginId": "graph-bucket",
+              "MinTTL": 600,
+              "DefaultTTL": 600,
+              "MaxTTL": 600,
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "none"
+                }
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/graphs/*"
             },
             {
               "TargetOriginId": "api",

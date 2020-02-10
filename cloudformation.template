@@ -175,13 +175,14 @@
             {
               "Id": "graph-bucket",
               "DomainName": {
-                "Fn::Sub": "${Environment}-otxp-web-graph-ui-files.s3-website-us-west-2.amazonaws.com",
+                "Fn::Sub": "${Environment}-otxp-web-graph-ui-files.s3-website-us-west-2.amazonaws.com"
               },
               "CustomOriginConfig": {
                 "HTTPPort": "80",
                 "HTTPSPort": "443",
                 "OriginProtocolPolicy": "https-only",
                 "OriginReadTimeout" : 180
+              }
             },
             {
               "Id": "api",

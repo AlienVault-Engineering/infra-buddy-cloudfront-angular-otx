@@ -435,7 +435,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Role": {"Fn::GetAtt": "IndexLambdaRole.Arn"},
-        "Runtime": "nodejs6.10",
+        "Runtime": "nodejs12.x",
         "Handler": "index.handler",
         "Code": {
           "ZipFile": {
@@ -496,7 +496,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Handler": "index.handler",
-        "Runtime": "nodejs6.10",
+        "Runtime": "nodejs12.x",
         "Role": {"Fn::GetAtt": "PublishLambdaVersionRole.Arn"},
         "Code": {
           "ZipFile": {

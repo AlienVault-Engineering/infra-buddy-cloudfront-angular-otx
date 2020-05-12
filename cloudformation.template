@@ -40,8 +40,11 @@
     "BackendHostname": {
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
+    },
+    "LambdaNonce": {
+      "Description": "Nonce used in deploying lambda.  Needs to be changed to new unique value whenever the lambda is updated",
+      "Type": "String"
     }
-
   },
   "Conditions": {
     "Production": {
@@ -217,7 +220,15 @@
               "QueryString": "true"
             },
             "Compress": true,
-            "ViewerProtocolPolicy": "redirect-to-https"
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "LambdaFunctionAssociations": [
+              {
+                "EventType": "origin_response",
+                "LambdaFunctionARN": {
+                  "Fn::GetAtt": "IndexLambdaVersion.FunctionArn"
+                }
+              }
+            ]
           },
           "CustomErrorResponses": [
             {
@@ -416,11 +427,139 @@
               "ViewerProtocolPolicy": "redirect-to-https",
               "PathPattern": "/robots.txt"
             }
-
           ]
         }
       }
     },
+
+
+    "IndexLambda": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Role": {"Fn::GetAtt": "IndexLambdaRole.Arn"},
+        "Runtime": "nodejs6.10",
+        "Handler": "index.handler",
+        "Code": {
+          "ZipFile": {
+            "Fn::Join": [
+              "",
+              [
+                "'use strict';",
+                "exports.handler = (event, context, callback) => {",
+                "  const response = event.Records[0].cf.response",
+                "  const headers = response.headers",
+                "  headers['strict-transport-security'] = [{key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubdomains; preload'}]",
+                "  headers['content-security-policy'] = [{key: 'Content-Security-Policy', value: \"default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'\"}]",
+                "  headers['x-content-type-options'] = [{key: 'X-Content-Type-Options', value: 'nosniff'}]",
+                "  headers['x-frame-options'] = [{key: 'X-Frame-Options', value: 'SAMEORIGIN'}]",
+                "  headers['x-xss-protection'] = [{key: 'X-XSS-Protection', value: '1; mode=block'}]",
+                "  headers['referrer-policy'] = [{key: 'Referrer-Policy', value: 'same-origin'}]",
+                "  callback(null, response)",
+                "};"
+              ]
+            ]
+          }
+        }
+      }
+    },
+
+    "IndexLambdaRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com",
+                  "edgelambda.amazonaws.com"
+                  ],
+                "Action": "sts:AssumeRole",
+                "ManagedPolicyArns": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    "IndexLambdaVersion": {
+      "Type": "Custom::LatestLambdaVersion",
+      "Properties": {
+        "ServiceToken": {"Fn::GetAtt": "PublishLambdaVersion.Arn"},
+        "FunctionName": {"Ref": "IndexLambda"},
+        "Nonce": {"Ref": "LambdaNonce"}
+      }
+    },
+
+    "PublishLambdaVersion": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Runtime": "nodejs6.10",
+        "Role": {"Fn::GetAtt": "PublishLambdaVersionRole.Arn"},
+        "Code": {
+          "ZipFile": {
+            "Fn::Join": [
+              "",
+              [
+                "const {Lambda} = require('aws-sdk')",
+                "const {send, SUCCESS, FAILED} = require('cfn-response')",
+                "const lambda = new Lambda()",
+                "exports.handler = (event, context) => {",
+                "  const {RequestType, ResourceProperties: {FunctionName}} = event",
+                "  if (RequestType == 'Delete') return send(event, context, SUCCESS)",
+                "  lambda.publishVersion({FunctionName}, (err, {FunctionArn}) => {",
+                "    err",
+                "      ? send(event, context, FAILED, err)",
+                "      : send(event, context, SUCCESS, {FunctionArn})",
+                "  })",
+                "}"
+              ]
+            ]
+          }
+        }
+      }
+    },
+
+    "PublishLambdaVersionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+                "Action": "sts:AssumeRole"
+              }
+            }
+          ],
+          "ManagedPolicyArns": [
+            "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+          ],
+          "Policies": [
+            {
+              "PolicyName": "PublishVersion",
+              "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": "lambda:PublishVersion",
+                    "Resource": "*"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+
     "primarydns": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {

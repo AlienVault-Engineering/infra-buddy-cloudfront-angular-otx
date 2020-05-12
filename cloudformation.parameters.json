@@ -38,6 +38,9 @@
   {
     "ParameterKey": "BackendHostname",
     "ParameterValue": "${BACKEND_HOSTNAME}"
+  },
+  {
+    "ParameterKey": "LambdaNonce",
+    "ParameterValue": "2020-11-12-1"
   }
-
 ]

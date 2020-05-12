@@ -538,23 +538,23 @@
                 "ManagedPolicyArns": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
               }
             }
-          ],
-          "Policies": [
-            {
-              "PolicyName": "PublishVersion",
-              "PolicyDocument": {
-                "Version": "2012-10-17",
-                "Statement": [
-                  {
-                    "Effect": "Allow",
-                    "Action": "lambda:PublishVersion",
-                    "Resource": "*"
-                  }
-                ]
-              }
-            }
           ]
-        }
+        },
+        "Policies": [
+          {
+            "PolicyName": "PublishVersion",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "lambda:PublishVersion",
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
       }
     },
 

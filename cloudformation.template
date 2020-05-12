@@ -474,12 +474,12 @@
                 "Service": [
                   "lambda.amazonaws.com",
                   "edgelambda.amazonaws.com"
-                ],
-                "ManagedPolicyArns": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-              },
+                ]
+              }
             }
           ]
-        }
+        },
+        "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
       }
     },
 
@@ -532,12 +532,12 @@
               "Effect": "Allow",
               "Action": "sts:AssumeRole",
               "Principal": {
-                "Service": "lambda.amazonaws.com",
-                "ManagedPolicyArns": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-              },
+                "Service": "lambda.amazonaws.com"
+              }
             }
           ]
         },
+        "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"],
         "Policies": [
           {
             "PolicyName": "PublishVersion",

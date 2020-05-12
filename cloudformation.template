@@ -75,10 +75,8 @@
         "PolicyDocument": {
           "Statement": [
             {
-              "Action": [
-                "s3:GetObject"
-              ],
               "Effect": "Allow",
+              "Action": ["s3:GetObject"],
               "Resource": {
                 "Fn::Join": [
                   "",
@@ -471,14 +469,14 @@
           "Statement": [
             {
               "Effect": "Allow",
+              "Action": "sts:AssumeRole",
               "Principal": {
                 "Service": [
                   "lambda.amazonaws.com",
                   "edgelambda.amazonaws.com"
                 ],
-                "Action": "sts:AssumeRole",
                 "ManagedPolicyArns": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-              }
+              },
             }
           ]
         }
@@ -532,11 +530,11 @@
           "Statement": [
             {
               "Effect": "Allow",
+              "Action": "sts:AssumeRole",
               "Principal": {
                 "Service": "lambda.amazonaws.com",
-                "Action": "sts:AssumeRole",
                 "ManagedPolicyArns": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-              }
+              },
             }
           ]
         },

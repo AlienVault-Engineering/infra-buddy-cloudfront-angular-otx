@@ -207,14 +207,18 @@
               "PUT"
             ],
             "TargetOriginId": "bucket",
-            "MinTTL": 600,
-            "DefaultTTL": 600,
+            "MinTTL": 60,
+            "DefaultTTL": 300,
             "MaxTTL": 600,
             "ForwardedValues": {
               "QueryString": "true"
             },
             "Compress": true,
-            "ViewerProtocolPolicy": "redirect-to-https"
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "LambdaFunctionAssociations": {
+              "EventType": "viewer-response",
+              "LambdaFunctionARN": "arn:aws:lambda:us-east-1:271083817914:function:cloudformation-headers:4"
+            }
           },
           "CustomErrorResponses": [
             {
@@ -227,8 +231,8 @@
           "CacheBehaviors": [
             {
               "TargetOriginId": "bucket",
-              "MinTTL": 600,
-              "DefaultTTL": 600,
+              "MinTTL": 60,
+              "DefaultTTL": 300,
               "MaxTTL": 600,
               "ForwardedValues": {
                 "QueryString": "true",
@@ -237,12 +241,16 @@
                 }
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "index.html"
+              "PathPattern": "index.html",
+              "LambdaFunctionAssociations": {
+                "EventType": "viewer-response",
+                "LambdaFunctionARN": "arn:aws:lambda:us-east-1:271083817914:function:cloudformation-headers:4"
+              }
             },
             {
               "TargetOriginId": "graph-bucket",
-              "MinTTL": 600,
-              "DefaultTTL": 600,
+              "MinTTL": 60,
+              "DefaultTTL": 300,
               "MaxTTL": 600,
               "ForwardedValues": {
                 "QueryString": "true",

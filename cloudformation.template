@@ -40,6 +40,10 @@
     "BackendHostname": {
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
+    },
+    "S3LambdaArn": {
+      "Description": "ARN of Lambda function to run on the S3 bucket origin behaviors",
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -218,7 +222,7 @@
             "LambdaFunctionAssociations": [
               {
                 "EventType": "viewer-response",
-                "LambdaFunctionARN": "arn:aws:lambda:us-east-1:271083817914:function:cloudformation-headers:4"
+                "LambdaFunctionARN": {"Ref":  "S3LambdaArn"}
               }
             ]
           },
@@ -247,7 +251,7 @@
               "LambdaFunctionAssociations": [
                 {
                   "EventType": "viewer-response",
-                  "LambdaFunctionARN": "arn:aws:lambda:us-east-1:271083817914:function:cloudformation-headers:4"
+                  "LambdaFunctionARN": {"Ref": "S3LambdaArn"}
                 }
               ]
             },

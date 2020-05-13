@@ -17,8 +17,9 @@
     "key": "CLOUDFRONT_HOSTNAME2",
     "default": ""
   },
-  "BACKEND_HOSTNAME": {
+  "S3_LAMBDA_ARN": {
     "type": "property",
-    "key": "BACKEND_HOSTNAME"
+    "key": "S3_LAMBDA_ARN",
+    "default": ""
   }
 }

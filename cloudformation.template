@@ -226,14 +226,6 @@
               }
             ]
           },
-          "CustomErrorResponses": [
-            {
-              "ErrorCode": "404",
-              "ResponsePagePath": "/index.html",
-              "ResponseCode": "200",
-              "ErrorCachingMinTTL": "30"
-            }
-          ],
           "CacheBehaviors": [
             {
               "TargetOriginId": "bucket",

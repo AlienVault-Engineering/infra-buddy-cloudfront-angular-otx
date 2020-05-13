@@ -239,7 +239,13 @@
                 }
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "index.html"
+              "PathPattern": "index.html",
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "origin-response",
+                  "LambdaFunctionARN": {"Ref":  "S3LambdaArn"}
+                }
+              ]
             },
             {
               "TargetOriginId": "graph-bucket",

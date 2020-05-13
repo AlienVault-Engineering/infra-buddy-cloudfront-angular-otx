@@ -228,26 +228,6 @@
           },
           "CacheBehaviors": [
             {
-              "TargetOriginId": "bucket",
-              "MinTTL": 60,
-              "DefaultTTL": 300,
-              "MaxTTL": 600,
-              "ForwardedValues": {
-                "QueryString": "true",
-                "Cookies": {
-                  "Forward": "none"
-                }
-              },
-              "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "index.html",
-              "LambdaFunctionAssociations": [
-                {
-                  "EventType": "origin-response",
-                  "LambdaFunctionARN": {"Ref":  "S3LambdaArn"}
-                }
-              ]
-            },
-            {
               "TargetOriginId": "graph-bucket",
               "MinTTL": 60,
               "DefaultTTL": 300,

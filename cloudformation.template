@@ -164,6 +164,22 @@
           },
           "Origins": [
             {
+              "Id": "cumulus",
+              "DomainName": "cloud-adsf.s3-website-us-east-1.amazonaws.com",
+              "CustomOriginConfig": {
+                "HTTPPort": "80",
+                "HTTPSPort": "443",
+                "OriginProtocolPolicy": "https-only",
+                "OriginReadTimeout" : 180
+              },
+              "OriginCustomHeaders": [
+                {
+                  "HeaderName" : "Referer",
+                  "HeaderValue" : "cH9Kb6Qm3ALo"
+                }
+              ]
+            },
+            {
               "Id": "bucket",
               "DomainName": {
                 "Fn::GetAtt": [
@@ -227,6 +243,19 @@
             ]
           },
           "CacheBehaviors": [
+            {
+              "TargetOriginId": "cumulus",
+              "MinTTL": 60,
+              "DefaultTTL": 300,
+              "MaxTTL": 600,
+              "ForwardedValues": {
+                "Cookies": {
+                  "Forward": "none"
+                }
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/cumulus*"
+            },
             {
               "TargetOriginId": "graph-bucket",
               "MinTTL": 60,

@@ -249,6 +249,7 @@
               "DefaultTTL": 300,
               "MaxTTL": 600,
               "ForwardedValues": {
+                "QueryString": "false",
                 "Cookies": {
                   "Forward": "none"
                 }

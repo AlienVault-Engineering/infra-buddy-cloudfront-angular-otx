@@ -41,6 +41,10 @@
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
     },
+    "BackendHostname2": {
+      "Description": "Hostname that hosts the backend API for cloudfront",
+      "Type": "String"
+    },
     "S3LambdaArn": {
       "Description": "ARN of Lambda function to run on the S3 bucket origin behaviors",
       "Type": "String"
@@ -232,6 +236,18 @@
                 "OriginProtocolPolicy": "https-only",
                 "OriginReadTimeout" : 180
               }
+            },
+            {
+              "Id": "api-alienvault-otx",
+              "DomainName": {
+                "Ref": "BackendHostname2"
+              },
+              "CustomOriginConfig": {
+                "HTTPPort": "80",
+                "HTTPSPort": "443",
+                "OriginProtocolPolicy": "http-only",
+                "OriginReadTimeout" : 180
+              }
             }
           ],
           "Enabled": "true",
@@ -309,7 +325,27 @@
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/*api/*"
+              "PathPattern": "/api/v1/*"
+            },
+            {
+              "TargetOriginId": "api",
+              "MinTTL": 0,
+              "DefaultTTL": 0,
+              "MaxTTL": 3600,
+              "AllowedMethods": [
+                "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
+              ],
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "all"
+                },
+                "Headers": [
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent", "Content-Type"
+                ]
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/otxapi/*"
             },
             {
               "TargetOriginId": "api",

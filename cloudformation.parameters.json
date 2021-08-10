@@ -40,6 +40,10 @@
     "ParameterValue": "${BACKEND_HOSTNAME}"
   },
   {
+    "ParameterKey": "BackendHostname2",
+    "ParameterValue": "${BACKEND_HOSTNAME2}"
+  },
+  {
     "ParameterKey": "S3LambdaArn",
     "ParameterValue": "${S3_LAMBDA_ARN}"
   }

@@ -155,26 +155,6 @@
               ]
             }
           ],
-          "Tags": [
-            {
-              "Key": "Environment",
-              "Value": {
-                "Ref": "Environment"
-              }
-            },
-            {
-              "Key": "Application",
-              "Value": {
-                "Ref": "Application"
-              }
-            },
-            {
-              "Key": "Role",
-              "Value": {
-                "Ref": "Role"
-              }
-            }
-          ],
           "ViewerCertificate": {
             "AcmCertificateArn": {
               "Ref": "CertficateArn"

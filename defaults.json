@@ -21,15 +21,5 @@
     "type": "property",
     "key": "S3_LAMBDA_ARN",
     "default": ""
-  },
-  "BACKEND_HOSTNAME": {
-    "type": "property",
-    "key": "BACKEND_HOSTNAME",
-    "default": ""
-  },
-  "BACKEND_HOSTNAME2": {
-    "type": "property",
-    "key": "BACKEND_HOSTNAME2",
-    "default": ""
   }
 }

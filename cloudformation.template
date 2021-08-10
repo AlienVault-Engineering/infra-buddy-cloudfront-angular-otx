@@ -236,18 +236,6 @@
                 "OriginProtocolPolicy": "https-only",
                 "OriginReadTimeout" : 180
               }
-            },
-            {
-              "Id": "api-alienvault-otx",
-              "DomainName": {
-                "Ref": "BackendHostname2"
-              },
-              "CustomOriginConfig": {
-                "HTTPPort": "80",
-                "HTTPSPort": "443",
-                "OriginProtocolPolicy": "http-only",
-                "OriginReadTimeout" : 180
-              }
             }
           ],
           "Enabled": "true",

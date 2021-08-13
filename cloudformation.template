@@ -215,7 +215,9 @@
             },
             {
               "Id": "otxp-web-server",
-              "DomainName": "ci-otxp-web.otx.alienvault.io",
+              "DomainName": {
+                "Ref": "BackendHostname2"
+              },
               "CustomOriginConfig": {
                 "HTTPPort": "80",
                 "HTTPSPort": "443",

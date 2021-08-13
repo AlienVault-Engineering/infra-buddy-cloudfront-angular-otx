@@ -212,6 +212,16 @@
                 "OriginProtocolPolicy": "https-only",
                 "OriginReadTimeout" : 180
               }
+            },
+            {
+              "Id": "otxp-web-server",
+              "DomainName": "ci-otxp-web.otx.alienvault.io",
+              "CustomOriginConfig": {
+                "HTTPPort": "80",
+                "HTTPSPort": "443",
+                "OriginProtocolPolicy": "http-only",
+                "OriginReadTimeout" : 180
+              }
             }
           ],
           "Enabled": "true",

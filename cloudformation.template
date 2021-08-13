@@ -41,6 +41,10 @@
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
     },
+    "BackendHostname2": {
+      "Description": "Hostname that hosts the backend API for cloudfront",
+      "Type": "String"
+    },
     "S3LambdaArn": {
       "Description": "ARN of Lambda function to run on the S3 bucket origin behaviors",
       "Type": "String"

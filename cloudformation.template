@@ -288,7 +288,7 @@
               "PathPattern": "/graphs*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -308,7 +308,7 @@
               "PathPattern": "/api/v1/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -328,7 +328,7 @@
               "PathPattern": "/otxapi/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -348,7 +348,7 @@
               "PathPattern": "/*auth/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -368,7 +368,7 @@
               "PathPattern": "/taxii*/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -388,7 +388,7 @@
               "PathPattern": "/scratch/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -408,7 +408,7 @@
               "PathPattern": "/unsubscribe/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -428,7 +428,7 @@
               "PathPattern": "/accounts/usm/"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,
@@ -448,7 +448,7 @@
               "PathPattern": "/sitemap/*"
             },
             {
-              "TargetOriginId": "api",
+              "TargetOriginId": "otxp-web-server",
               "MinTTL": 0,
               "DefaultTTL": 0,
               "MaxTTL": 3600,

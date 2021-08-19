@@ -225,7 +225,7 @@
               "CustomOriginConfig": {
                 "HTTPPort": "80",
                 "HTTPSPort": "443",
-                "OriginProtocolPolicy": "http-only",
+                "OriginProtocolPolicy": "https-only",
                 "OriginReadTimeout" : 180
               }
             }

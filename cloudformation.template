@@ -41,10 +41,6 @@
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
     },
-    "BackendHostname2": {
-      "Description": "Hostname that hosts the backend API for cloudfront",
-      "Type": "String"
-    },
     "S3LambdaArn": {
       "Description": "ARN of Lambda function to run on the S3 bucket origin behaviors",
       "Type": "String"
@@ -168,22 +164,6 @@
           },
           "Origins": [
             {
-              "Id": "cumulus",
-              "DomainName": "cloud-adsf.s3-website-us-east-1.amazonaws.com",
-              "CustomOriginConfig": {
-                "HTTPPort": "80",
-                "HTTPSPort": "443",
-                "OriginProtocolPolicy": "http-only",
-                "OriginReadTimeout" : 180
-              },
-              "OriginCustomHeaders": [
-                {
-                  "HeaderName" : "Referer",
-                  "HeaderValue" : "cH9Kb6Qm3ALo"
-                }
-              ]
-            },
-            {
               "Id": "bucket",
               "DomainName": {
                 "Fn::GetAtt": [
@@ -206,21 +186,9 @@
               }
             },
             {
-              "Id": "api",
-              "DomainName": {
-                "Ref": "BackendHostname"
-              },
-              "CustomOriginConfig": {
-                "HTTPPort": "80",
-                "HTTPSPort": "443",
-                "OriginProtocolPolicy": "https-only",
-                "OriginReadTimeout" : 180
-              }
-            },
-            {
               "Id": "otxp-web-server",
               "DomainName": {
-                "Ref": "BackendHostname2"
+                "Ref": "BackendHostname"
               },
               "CustomOriginConfig": {
                 "HTTPPort": "80",
@@ -259,20 +227,6 @@
             ]
           },
           "CacheBehaviors": [
-            {
-              "TargetOriginId": "cumulus",
-              "MinTTL": 60,
-              "DefaultTTL": 300,
-              "MaxTTL": 600,
-              "ForwardedValues": {
-                "QueryString": "false",
-                "Cookies": {
-                  "Forward": "none"
-                }
-              },
-              "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/cumulus*"
-            },
             {
               "TargetOriginId": "graph-bucket",
               "MinTTL": 60,

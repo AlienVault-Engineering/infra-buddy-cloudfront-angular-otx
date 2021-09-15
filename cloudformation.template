@@ -142,7 +142,7 @@
       "Properties": {
         "DistributionConfig": {
           "Aliases": [
-            {"Ref": "CloudfrontHostname"}
+            {"Ref": "CloudfrontHostname"},
             {
               "Fn::If": [
                 "NoCloudfrontHostname2",

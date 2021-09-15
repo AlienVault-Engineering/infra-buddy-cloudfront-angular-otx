@@ -33,10 +33,6 @@
       "Description": "Hostname to serve cloudfront content from",
       "Type": "String"
     },
-    "CloudfrontHostname2": {
-      "Description": "Hostname to serve cloudfront content from",
-      "Type": "String"
-    },
     "BackendHostname": {
       "Description": "Hostname that hosts the backend API for cloudfront",
       "Type": "String"
@@ -53,15 +49,6 @@
           "Ref": "Environment"
         },
         "prod"
-      ]
-    },
-    "NoCloudfrontHostname2": {
-      "Fn::Equals": [
-        {
-          "Ref":
-          "CloudfrontHostname2"
-        },
-        ""
       ]
     }
   },
@@ -142,18 +129,7 @@
       "Properties": {
         "DistributionConfig": {
           "Aliases": [
-            {"Ref": "CloudfrontHostname"},
-            {
-              "Fn::If": [
-                "NoCloudfrontHostname2",
-                {
-                  "Ref": "AWS::NoValue"
-                },
-                {
-                  "Ref": "CloudfrontHostname2"
-                }
-              ]
-            }
+            {"Ref": "CloudfrontHostname"}
           ],
           "ViewerCertificate": {
             "AcmCertificateArn": {

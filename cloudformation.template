@@ -259,7 +259,7 @@
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/api/v1/*"
+              "PathPattern": "/_?api/v1/*"
             },
             {
               "TargetOriginId": "otxp-web-server",
@@ -279,7 +279,7 @@
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": "/otxapi/*"
+              "PathPattern": "/_?otxapi/*"
             },
             {
               "TargetOriginId": "otxp-web-server",

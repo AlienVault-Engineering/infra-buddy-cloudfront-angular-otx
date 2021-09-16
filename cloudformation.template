@@ -279,7 +279,47 @@
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/_api/v1/*"
+            },
+            {
+              "TargetOriginId": "otxp-web-server",
+              "MinTTL": 0,
+              "DefaultTTL": 0,
+              "MaxTTL": 3600,
+              "AllowedMethods": [
+                "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
+              ],
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "all"
+                },
+                "Headers": [
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent", "Content-Type"
+                ]
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
               "PathPattern": "/otxapi/*"
+            },
+            {
+              "TargetOriginId": "otxp-web-server",
+              "MinTTL": 0,
+              "DefaultTTL": 0,
+              "MaxTTL": 3600,
+              "AllowedMethods": [
+                "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
+              ],
+              "ForwardedValues": {
+                "QueryString": "true",
+                "Cookies": {
+                  "Forward": "all"
+                },
+                "Headers": [
+                  "X-OTX-API-KEY", "Accept", "Accept-Encoding", "Authorization", "Origin", "Pragma", "Referrer", "User-Agent", "Content-Type"
+                ]
+              },
+              "ViewerProtocolPolicy": "redirect-to-https",
+              "PathPattern": "/_otxapi/*"
             },
             {
               "TargetOriginId": "otxp-web-server",
